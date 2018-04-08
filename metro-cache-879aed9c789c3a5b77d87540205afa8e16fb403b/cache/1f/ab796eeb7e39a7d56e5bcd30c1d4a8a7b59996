@@ -1,0 +1,227 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/chiranga/AwesomeProject/SearchPage.js";
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        SearchPage: {
+            displayName: "SearchPage"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/chiranga/AwesomeProject/SearchPage.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    function urlForQueryAndPage(key, value, pageNumber) {
+        var data = {
+            country: 'uk',
+            pretty: '1',
+            encoding: 'json',
+            listing_type: 'buy',
+            action: 'search_listings',
+            page: pageNumber
+        };
+        data[key] = value;
+        var querystring = Object.keys(data).map(function (key) {
+            return +'=' + encodeURIComponent(data[key]);
+        }).join('&');
+        return 'https://api.nestoria.co.uk/api?' + querystring;
+    }
+
+    var SearchPage = _wrapComponent("SearchPage")((_temp = _class = function (_Component) {
+        _inherits(SearchPage, _Component);
+
+        function SearchPage(props) {
+            _classCallCheck(this, SearchPage);
+
+            var _this = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this, props));
+
+            _this._onSearchTextChanged = function (event) {
+                _this.setState({
+                    searchString: event.nativeEvent.text
+                });
+            };
+
+            _this._executeQuery = function (Query) {
+                console.log(query);
+
+                _this.setState({
+                    isLoading: true
+                });
+            };
+
+            _this._onSearchPressed = function () {
+                var query = urlForQueryAndPage('place_name', _this.state.searchString, 1);
+
+                _this._executeQuery(query);
+            };
+
+            _this.state = {
+                searchString: 'london',
+                isLoading: false
+            };
+            return _this;
+        }
+
+        _createClass(SearchPage, [{
+            key: "render",
+            value: function render() {
+                var spinner = this.state.isLoading ? _react3.default.createElement(_reactNative.ActivityIndicator, {
+                    size: "large",
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 49
+                    }
+                }) : null;
+                console.log('SearchPage.render');
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 53
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.description,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 54
+                            }
+                        },
+                        "Search for houses to buy"
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.description,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 57
+                            }
+                        },
+                        "Search by place-name or postcode"
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.flowRight,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 60
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            underlineColorAndroid: 'transparent',
+                            style: styles.searchInput,
+                            value: this.state.searchString,
+                            onChange: this._onSearchTextChanged,
+                            placeholder: "Search via name or postcode",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 61
+                            }
+                        }),
+                        _react3.default.createElement(_reactNative.Button, {
+                            onPress: this._onSearchPressed,
+                            color: "#48BBEC",
+                            title: "Go",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 67
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(_reactNative.Image, {
+                        source: require(_dependencyMap[3], './Resources/house.png'),
+                        style: styles.image,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 74
+                        }
+                    }),
+                    spinner
+                );
+            }
+        }]);
+
+        return SearchPage;
+    }(_react2.Component), _class.navigationOptions = {
+        title: 'Property Finder'
+    }, _temp));
+
+    exports.default = SearchPage;
+
+    var styles = _reactNative.StyleSheet.create({
+        description: {
+            marginBottom: 20,
+            fontSize: 18,
+            textAlign: 'center',
+            color: '#656565'
+        },
+        container: {
+            padding: 30,
+            marginTop: 65,
+            alignItems: 'center'
+        },
+        flowRight: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            alignSelf: 'stretch'
+        },
+        searchInput: {
+            height: 36,
+            padding: 4,
+            marginRight: 5,
+            flexGrow: 1,
+            fontSize: 18,
+            borderWidth: 1,
+            borderColor: '#48BBEC',
+            borderRadius: 8,
+            color: '#48BBEC'
+        },
+        image: {
+            width: 217,
+            height: 138
+        }
+    });
+});
